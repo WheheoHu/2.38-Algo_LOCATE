@@ -8,5 +8,7 @@
 #include "cyclelinkedlist.h"
 
 int main() {
+	Cycle_Linked_List<int> CLList;
+
 
 }
