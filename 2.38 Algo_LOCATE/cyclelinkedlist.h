@@ -23,12 +23,13 @@ public:
 	void CycleListInsert(int location, T elem);
 	void CycleListDelete(int location);
 	void CycleListDelete(int location, T &elem);
+	T getElem(int location);
 	void setFreqPlus(int location);
 	int getFreq(int location);
 private:
 	CycleNode<T> *head;
 	CycleNode<T> *find(int location) {
-		CycleNode *p = head;
+		CycleNode<T> *p = head;
 		for (int i = 0; i < location - 1; i++)
 		{
 			p = p->nextnode;
@@ -153,6 +154,13 @@ inline void Cycle_Linked_List<T>::CycleListDelete(int location, T & elem)
 	predeletnode->nextnode = temp->nextnode;
 	temp->nextnode->prenode = predeletnode;
 	delete temp;
+}
+
+template<class T>
+inline T Cycle_Linked_List<T>::getElem(int location)
+{
+	CycleNode<T> *p = find(location);
+	return p->nextnode->data;
 }
 
 template<class T>
