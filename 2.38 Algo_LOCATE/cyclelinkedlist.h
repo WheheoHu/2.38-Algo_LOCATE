@@ -6,7 +6,8 @@ struct CycleNode
 	T data;
 	CycleNode *prenode;
 	CycleNode *nextnode;
-	CycleNode(const T &d) :data(d), prenode(NULL), nextnode(NULL) {}
+	int freq;
+	CycleNode(const T &d) :data(d), prenode(NULL), nextnode(NULL),freq(0) {}
 };
 
 template <class T>
@@ -22,6 +23,8 @@ public:
 	void CycleListInsert(int location, T elem);
 	void CycleListDelete(int location);
 	void CycleListDelete(int location, T &elem);
+	void setFreqPlus(int location);
+	int getFreq(int location);
 private:
 	CycleNode<T> *head;
 	CycleNode<T> *find(int location) {
@@ -150,4 +153,18 @@ inline void Cycle_Linked_List<T>::CycleListDelete(int location, T & elem)
 	predeletnode->nextnode = temp->nextnode;
 	temp->nextnode->prenode = predeletnode;
 	delete temp;
+}
+
+template<class T>
+inline void Cycle_Linked_List<T>::setFreqPlus(int location)
+{
+	CycleNode<T> *p = find(location);
+	p->nextnode->freq++;
+}
+
+template<class T>
+inline int Cycle_Linked_List<T>::getFreq(int location)
+{
+	CycleNode<T> *p = find(location);
+	return p->nextnode->freq;
 }
