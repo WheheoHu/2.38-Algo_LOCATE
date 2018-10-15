@@ -17,7 +17,7 @@ public:
 	Cycle_Linked_List();
 	Cycle_Linked_List(T firstelem);
 	~Cycle_Linked_List();
-	void InitCycleList(T headelem);
+	void InitCycleList();
 	bool isEmpty();
 	int  CycleListLength();
 	void CycleListInsert(int location, T elem);
@@ -30,7 +30,7 @@ private:
 	CycleNode<T> *head;
 	CycleNode<T> *find(int location) {
 		CycleNode<T> *p = head;
-		for (int i = 0; i < location - 1; i++)
+		for (int i = 0; i < location-1; i++)
 		{
 			p = p->nextnode;
 		}
@@ -47,7 +47,8 @@ inline Cycle_Linked_List<T>::Cycle_Linked_List()
 template<class T>
 inline Cycle_Linked_List<T>::Cycle_Linked_List(T firstelem)
 {
-	InitCycleList(firstelem);
+	InitCycleList();
+	CycleListInsert(1, firstelem);
 }
 
 template<class T>
@@ -58,9 +59,9 @@ inline Cycle_Linked_List<T>::~Cycle_Linked_List()
 }
 
 template<class T>
-inline void Cycle_Linked_List<T>::InitCycleList(T headelem)
+inline void Cycle_Linked_List<T>::InitCycleList()
 {
-	head = new CycleNode<T>(headelem);
+	head = new CycleNode<T>(0);
 	head->prenode = head;
 	head->nextnode = head;
 }
@@ -100,11 +101,7 @@ inline void Cycle_Linked_List<T>::CycleListInsert(int location, T elem)
 		exit;
 	}
 	CycleNode<T> *insertnode = new CycleNode<T>(elem);
-	CycleNode<T> *temp = head;
-	for (int i = 0; i < location; i++)
-	{
-		temp = temp->nextnode;
-	}
+	CycleNode<T> *temp = find(location);
 	insertnode->nextnode = temp->nextnode;
 	insertnode->nextnode->prenode = insertnode;
 	insertnode->prenode = temp;

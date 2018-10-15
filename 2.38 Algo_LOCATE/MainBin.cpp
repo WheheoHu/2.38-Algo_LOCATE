@@ -9,10 +9,11 @@
 const int size = 40;
 int main() {
 	Cycle_Linked_List<int> CLList;
-	CLList.InitCycleList(0);
-	for (int i = 0; i < size-1; i++)
+	CLList.InitCycleList();
+
+	for (int i = 0; i < size; i++)
 	{
-		CLList.CycleListInsert(2, i + 1);
+		CLList.CycleListInsert(i+1,i);
 	}
 	for (int i = 0; i < CLList.CycleListLength(); i++)
 	{
