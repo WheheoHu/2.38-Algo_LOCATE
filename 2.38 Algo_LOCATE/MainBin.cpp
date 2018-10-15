@@ -17,7 +17,12 @@ int main() {
 	}
 
 	CLList.LOCATE(13);
-
+	CLList.LOCATE(12);
+	CLList.LOCATE(13);
+	CLList.LOCATE(3);
+	CLList.LOCATE(3);
+	CLList.LOCATE(3);
+	CLList.LOCATE(3);
 	for (int i = 0; i < CLList.CycleListLength(); i++)
 	{
 		std::cout << CLList.getElem(i + 1) << std::endl;

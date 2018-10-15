@@ -195,5 +195,20 @@ inline void Cycle_Linked_List<T>::LOCATE(T elem)
 	{
 		setFreqPlus(location);
 	}
+	CycleNode<T> *newtemp = new CycleNode<T>(p->nextnode->data, p->nextnode->freq);
+	CycleNode<T> *temp = find(location);
+	temp->nextnode = p->nextnode->nextnode;
+	p->nextnode->nextnode->prenode = temp->nextnode;
+	location = 1;
+	temp = head;
+	while (temp->nextnode->freq>newtemp->freq)
+	{
+		temp = temp->nextnode;
+		location++;
+	}
+	newtemp->nextnode = temp->nextnode;
+	temp->nextnode->prenode = newtemp;
+	temp->nextnode = newtemp;
+	newtemp->prenode = temp;
 	
 }
