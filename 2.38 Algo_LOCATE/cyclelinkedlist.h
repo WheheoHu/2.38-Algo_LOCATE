@@ -184,7 +184,7 @@ inline int Cycle_Linked_List<T>::getFreq(int location)
 template<class T>
 inline void Cycle_Linked_List<T>::LOCATE(T elem)
 {	
-	int location = 0;
+	int location = 1;
 	CycleNode<T> *p = head;
 	while (p->nextnode->data!=elem)
 	{

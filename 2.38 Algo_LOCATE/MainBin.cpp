@@ -13,7 +13,7 @@ int main() {
 
 	for (int i = 0; i < size; i++)
 	{
-		CLList.CycleListInsert(i+1,i);
+		CLList.CycleListInsert(i+1,i+1);
 	}
 
 	CLList.LOCATE(13);
