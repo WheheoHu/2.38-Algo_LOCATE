@@ -1,5 +1,6 @@
 #pragma once
 
+//结点结构
 template<typename T>
 struct CycleNode
 {
@@ -10,12 +11,16 @@ struct CycleNode
 	CycleNode(const T &d) :data(d), prenode(NULL), nextnode(NULL),freq(0) {}
 };
 
+//双循环链表
+//head节点默认为0
+//head->nextnode为第一个节点
+//head->prenode为最后节点
 template <class T>
 
 class Cycle_Linked_List {
 public:
-	Cycle_Linked_List();
-	Cycle_Linked_List(T firstelem);
+	Cycle_Linked_List();//创建一个head节点
+	Cycle_Linked_List(T firstelem);//创建一个head节点并创建第一个节点值为firstelem
 	~Cycle_Linked_List();
 	void InitCycleList();
 	bool isEmpty();
@@ -96,9 +101,9 @@ inline int Cycle_Linked_List<T>::CycleListLength()
 template<class T>
 inline void Cycle_Linked_List<T>::CycleListInsert(int location, T elem)
 {
-	if (location<1 || location>CycleListLength())
+	if (location<1 || location>CycleListLength()+1)
 	{
-		exit;
+		exit(OVERFLOW);
 	}
 	CycleNode<T> *insertnode = new CycleNode<T>(elem);
 	CycleNode<T> *temp = find(location);

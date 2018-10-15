@@ -15,10 +15,7 @@ int main() {
 	{
 		CLList.CycleListInsert(i+1,i);
 	}
-	for (int i = 0; i < CLList.CycleListLength(); i++)
-	{
-		std::cout << CLList.getElem(i + 1) << std::endl;
-	}
+	
 
 	system("pause");
 }
