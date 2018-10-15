@@ -9,6 +9,7 @@ struct CycleNode
 	CycleNode *nextnode;
 	int freq;
 	CycleNode(const T &d) :data(d), prenode(NULL), nextnode(NULL),freq(0) {}
+	CycleNode(const T &d,int freq) :data(d), prenode(NULL), nextnode(NULL), freq(freq) {}
 };
 
 //Ë«Ñ­»·Á´±í
@@ -31,6 +32,7 @@ public:
 	T getElem(int location);
 	void setFreqPlus(int location);
 	int getFreq(int location);
+	void LOCATE(T elem);//LOCATEËã·¨
 private:
 	CycleNode<T> *head;
 	CycleNode<T> *find(int location) {
@@ -177,4 +179,21 @@ inline int Cycle_Linked_List<T>::getFreq(int location)
 {
 	CycleNode<T> *p = find(location);
 	return p->nextnode->freq;
+}
+
+template<class T>
+inline void Cycle_Linked_List<T>::LOCATE(T elem)
+{	
+	int location = 0;
+	CycleNode<T> *p = head;
+	while (p->nextnode->data!=elem)
+	{
+		p = p->nextnode;
+		location++;
+	}
+	if (p->nextnode!=head)
+	{
+		setFreqPlus(location);
+	}
+	
 }
